@@ -29,3 +29,11 @@ export const calculateTip = (
 
   return (amount * tipInPercentage) / 100;
 };
+
+export const splitAmount = (amount: number, numberOfPersons: number) => {
+  if (numberOfPersons <= 0) {
+    throw new Error("'numberOfPerson' must be greater than zero");
+  }
+
+  return amount / numberOfPersons;
+};
