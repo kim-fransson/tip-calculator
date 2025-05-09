@@ -2,18 +2,18 @@ import { Button, type ButtonProps } from "react-aria-components";
 import { Currency } from "./Currency";
 import { twJoin } from "tailwind-merge";
 
-interface ResultsProps {
+interface ResultsContainerProps {
   tipAmountPerPerson?: number;
   totalAmountPerPerson?: number;
   isResetDisabled?: boolean;
   onReset?: () => void;
 }
-export const Results = ({
+export const ResultsContainer = ({
   tipAmountPerPerson,
   totalAmountPerPerson,
   isResetDisabled = true,
   onReset = () => {},
-}: ResultsProps) => {
+}: ResultsContainerProps) => {
   return (
     <ResultsContent>
       <ResultsDetails>
