@@ -1,9 +1,10 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { type ReactElement } from "react";
 import { render, type RenderOptions } from "@testing-library/react";
+import { I18nProvider } from "react-aria-components";
 
 const AllTheProviders = ({ children }: { children: React.ReactNode }) => {
-  return children;
+  return <I18nProvider>{children}</I18nProvider>;
 };
 
 const customRender = (
