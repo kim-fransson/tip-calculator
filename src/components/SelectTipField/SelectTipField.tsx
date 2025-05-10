@@ -7,11 +7,15 @@ import {
 } from "react-aria-components";
 import { FieldLabel } from "../FieldLabel/FieldLabel";
 import { twJoin } from "tailwind-merge";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const staticTipValues = [0.05, 0.1, 0.15, 0.25, 0.5];
 
-export const SelectTipField = () => {
+interface SelectTipFieldProps {
+  tip: number | undefined | null;
+  onTipChange: (val: number) => void;
+}
+export const SelectTipField = ({ onTipChange, tip }: SelectTipFieldProps) => {
   const [selectedTip, setSelectedTip] = useState(new Set<Key>([]));
   const [customTip, setCustomTip] = useState<number | null>(null);
 
@@ -24,6 +28,22 @@ export const SelectTipField = () => {
     setSelectedTip(new Set<Key>([]));
     setCustomTip(customTip);
   };
+
+  useEffect(() => {
+    if (!tip) {
+      setSelectedTip(new Set<Key>([]));
+      setCustomTip(null);
+    }
+  }, [tip]);
+
+  useEffect(() => {
+    if (selectedTip.size > 0) {
+      const tip = selectedTip.values().next().value as number;
+      onTipChange(tip * 100);
+    } else if (customTip) {
+      onTipChange(customTip * 100);
+    }
+  }, [selectedTip, customTip, onTipChange]);
 
   return (
     <SelectTipFieldContainer>
