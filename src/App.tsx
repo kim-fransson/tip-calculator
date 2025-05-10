@@ -4,6 +4,8 @@ import { twJoin } from "tailwind-merge";
 
 import splitterLogoSrc from "./assets/logo.svg";
 import { SelectTipField } from "./components/SelectTipField";
+import { NumberField } from "./components/NumberField";
+import { Users } from "lucide-react";
 
 function App() {
   return (
@@ -60,16 +62,30 @@ const MainContainer = ({ children }: { children: React.ReactNode }) => {
 
 const BillSection = () => {
   return (
-    <section>
+    <section className="grid gap-8">
       <h2 className="sr-only">Let's Break Down the Feast</h2>
+      <NumberField
+        label="Bill"
+        postfix="$"
+        placeholder="0"
+        formatOptions={{
+          maximumFractionDigits: 2,
+        }}
+      />
       <SelectTipField />
+      <NumberField
+        label="Number of People"
+        postfix={<Users strokeWidth={3} />}
+        placeholder="0"
+        minValue={0}
+      />
     </section>
   );
 };
 
 const ResultsSection = () => {
   return (
-    <section>
+    <section className="grid">
       <h2 className="sr-only">Split Happens, Here's the Breakdown</h2>
       <ResultsContainer />
     </section>

@@ -61,6 +61,7 @@ const ResetButton = (props: ButtonProps) => {
       {...props}
       className={twJoin(
         "px-8 py-2 h-12 text-xl tracking-wider rounded-sm font-bold outline-0 transition-all duration-200",
+        "self-end",
         "text-green-900 bg-green-400 cursor-pointer",
         "hover:bg-green-200",
         "pressed:scale-95",

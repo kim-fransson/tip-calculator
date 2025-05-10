@@ -82,9 +82,10 @@ const CustomTip = ({
       <Input
         placeholder="Custom"
         className={twJoin(
-          "h-12 cursor-pointer outline-0 w-full px-4 py-2  font-bold text-2xl rounded-sm transition-all duration-200",
+          "h-12 cursor-pointer outline-2 outline-transparent w-full px-4 py-2  font-bold text-2xl rounded-sm transition-all duration-200",
           "text-center placeholder:text-grey-550 placeholder:text-2xl placeholder:font-bold",
-          "focus-visible:outline-2 focus-visible:outline-blue-400 focus-visible:outline-offset-2 hover:outline-2 hover:outline-green-200 hover:outline-offset-2",
+          "hover:outline-2 hover:outline-green-200",
+          "focus:outline-2 focus:outline-green-400",
           customTip ? "bg-green-400 text-green-900" : "bg-grey-50 text-grey-550"
         )}
       />
