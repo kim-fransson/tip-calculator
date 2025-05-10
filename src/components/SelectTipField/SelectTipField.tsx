@@ -15,7 +15,10 @@ interface SelectTipFieldProps {
   tip: number | undefined | null;
   onTipChange: (val: number) => void;
 }
-export const SelectTipField = ({ onTipChange, tip }: SelectTipFieldProps) => {
+export const SelectTipField = ({
+  onTipChange = () => {},
+  tip,
+}: SelectTipFieldProps) => {
   const [selectedTip, setSelectedTip] = useState(new Set<Key>([]));
   const [customTip, setCustomTip] = useState<number | null>(null);
 
