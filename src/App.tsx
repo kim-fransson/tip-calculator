@@ -53,7 +53,7 @@ const MainContainer = ({ children }: { children: React.ReactNode }) => {
       <h1 className="sr-only">
         Let's Split It! Said the One Who Ordered a Salad
       </h1>
-      <main className="grid gap-8">{children}</main>
+      <main className="grid gap-8 lg:grid-cols-2">{children}</main>
     </>
   );
 };
