@@ -78,6 +78,8 @@ const BillSection = () => {
         postfix={<Users strokeWidth={3} />}
         placeholder="0"
         minValue={0}
+        errorMessage="Can't be zero"
+        isInvalid={false}
       />
     </section>
   );

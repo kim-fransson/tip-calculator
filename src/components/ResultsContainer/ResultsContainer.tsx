@@ -43,7 +43,11 @@ const ResultsDetails = ({ children }: { children: React.ReactNode }) => {
 };
 
 const ResultsRow = ({ children }: { children: React.ReactNode }) => {
-  return <div className="flex flex-wrap justify-between">{children}</div>;
+  return (
+    <div className="flex flex-wrap justify-between items-center">
+      {children}
+    </div>
+  );
 };
 
 const ResultsLabel = ({ label }: { label: string }) => {
