@@ -1,8 +1,9 @@
 import { I18nProvider } from "react-aria-components";
-import { ResultsContainer } from "./components/ResultsContainer";
+import { ResultsContainer } from "./components/ResultsContainer/ResultsContainer";
 import { twJoin } from "tailwind-merge";
 
 import splitterLogoSrc from "./assets/logo.svg";
+import { SelectTipField } from "./components/SelectTipField";
 
 function App() {
   return (
@@ -59,8 +60,9 @@ const MainContainer = ({ children }: { children: React.ReactNode }) => {
 
 const BillSection = () => {
   return (
-    <section className="border">
+    <section>
       <h2 className="sr-only">Let's Break Down the Feast</h2>
+      <SelectTipField />
     </section>
   );
 };

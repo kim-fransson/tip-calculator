@@ -1,7 +1,7 @@
 import { Currency } from "./Currency";
 import { render, screen } from "../../utils/test-utils";
 
-describe("<Currency />", () => {
+describe("Currency", () => {
   it("renders and displays $0.00 for zero", () => {
     render(<Currency value={0} currency="USD" />);
     expect(screen.getByText("$0.00")).toBeVisible();

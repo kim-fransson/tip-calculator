@@ -1,5 +1,5 @@
 import { Button, type ButtonProps } from "react-aria-components";
-import { Currency } from "./Currency";
+import { Currency } from "../Currency";
 import { twJoin } from "tailwind-merge";
 
 interface ResultsContainerProps {

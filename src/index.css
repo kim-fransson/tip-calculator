@@ -1,6 +1,7 @@
 @import "tailwindcss";
 @plugin "tailwindcss-react-aria-components";
-@import "@fontsource/space-mono";
+@import "@fontsource/space-mono/400.css";
+@import "@fontsource/space-mono/700.css";
 
 @theme {
   --font-display: "Space Mono", monospace;
