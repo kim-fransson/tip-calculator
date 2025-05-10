@@ -12,8 +12,8 @@ import { useEffect, useState } from "react";
 const staticTipValues = [0.05, 0.1, 0.15, 0.25, 0.5];
 
 interface SelectTipFieldProps {
-  tip: number | undefined | null;
-  onTipChange: (val: number) => void;
+  tip?: number | null;
+  onTipChange?: (val: number) => void;
 }
 export const SelectTipField = ({
   onTipChange = () => {},
