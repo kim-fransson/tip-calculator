@@ -95,12 +95,12 @@ const BillContainer = ({ children }: { children: React.ReactNode }) => {
 
 const MainContainer = ({ children }: { children: React.ReactNode }) => {
   return (
-    <>
+    <main className="grid gap-8 lg:grid-cols-2">
       <h1 className="sr-only">
         Let's Split It! Said the One Who Ordered a Salad
       </h1>
-      <main className="grid gap-8 lg:grid-cols-2">{children}</main>
-    </>
+      {children}
+    </main>
   );
 };
 
