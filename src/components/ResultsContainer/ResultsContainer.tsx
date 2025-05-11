@@ -76,7 +76,7 @@ const ResetButton = (props: ButtonProps) => {
         "hover:bg-green-200",
         "pressed:scale-95",
         "focus-visible:outline-2 focus-visible:outline-blue-500 focus-visible:outline-offset-2",
-        "disabled:text-green-800 disabled:bg-green-750 disabled:cursor-not-allowed"
+        "disabled:text-green-200/33 disabled:bg-green-750 disabled:cursor-not-allowed"
       )}
     >
       RESET
