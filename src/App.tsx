@@ -27,8 +27,11 @@ function App() {
   };
 
   useEffect(() => {
-    if (bill && tip && numberOfPeople) {
-      const totalTipAmount = calculateTip(bill, tip);
+    if (bill && numberOfPeople) {
+      let totalTipAmount = 0;
+      if (tip) {
+        totalTipAmount = calculateTip(bill, tip);
+      }
       const totalAmount = bill + totalTipAmount;
 
       setTipAmountPerPerson(splitAmount(totalTipAmount, numberOfPeople));
@@ -120,8 +123,10 @@ const BillSection = ({
     <section className="grid gap-8">
       <h2 className="sr-only">Let's Break Down the Feast</h2>
       <NumberField
+        testid="bill"
         label="Bill"
         postfix="$"
+        minValue={0}
         value={bill as number}
         onChange={onBillChange}
         placeholder="0"
@@ -131,6 +136,7 @@ const BillSection = ({
       />
       <SelectTipField tip={tip} onTipChange={onTipChange} />
       <NumberField
+        testid="number-of-people"
         label="Number of People"
         postfix={<Users strokeWidth={3} />}
         placeholder="0"

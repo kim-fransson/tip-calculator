@@ -17,15 +17,21 @@ export const ResultsContainer = ({
   return (
     <ResultsContent>
       <ResultsDetails>
-        <ResultsRow>
+        <ResultRow>
           <ResultsLabel label="Tip Amount" />
-          <Currency value={tipAmountPerPerson || 0} />
-        </ResultsRow>
+          <Currency
+            testid="tip-amount-per-person"
+            value={tipAmountPerPerson || 0}
+          />
+        </ResultRow>
 
-        <ResultsRow>
+        <ResultRow>
           <ResultsLabel label="Total" />
-          <Currency value={totalAmountPerPerson || 0} />
-        </ResultsRow>
+          <Currency
+            testid="total-amount-per-person"
+            value={totalAmountPerPerson || 0}
+          />
+        </ResultRow>
       </ResultsDetails>
       <ResetButton isDisabled={isResetDisabled} onPress={onReset} />
     </ResultsContent>
@@ -42,7 +48,7 @@ const ResultsDetails = ({ children }: { children: React.ReactNode }) => {
   return <div className="grid gap-6">{children}</div>;
 };
 
-const ResultsRow = ({ children }: { children: React.ReactNode }) => {
+const ResultRow = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex flex-wrap justify-between items-center">
       {children}

@@ -17,6 +17,7 @@ interface NumberFieldProps extends RACNumberFieldProps {
   errorMessage?: string | ((validation: ValidationResult) => string);
   placeholder?: string;
   postfix?: string | ReactNode;
+  testid?: string;
 }
 
 export const NumberField = ({
@@ -24,12 +25,13 @@ export const NumberField = ({
   errorMessage,
   placeholder,
   postfix,
+  testid,
   ...props
 }: NumberFieldProps) => {
   return (
     <RACNumberField {...props} className="grid gap-2">
       <div className="flex justify-between items-center">
-        <FieldLabel>{label}</FieldLabel>
+        <FieldLabel data-testid={testid}>{label}</FieldLabel>
         <FieldError className="text-orange font-bold text-sm">
           {errorMessage}
         </FieldError>
@@ -43,9 +45,9 @@ export const NumberField = ({
           className={twJoin(
             "pr-4 pl-12 w-full py-2 h-12 text-right bg-grey-50 text-grey-900 rounded-sm outline-2 outline-transparent cursor-pointer transition-all duration-200",
             "text-2xl font-bold text-green-900",
+            "invalid:outline-orange",
             "hover:outline-green-200",
             "focus:outline-green-400",
-            "invalid:outline-orange",
             "placeholder:text-grey-300"
           )}
         />

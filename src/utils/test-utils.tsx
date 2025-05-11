@@ -14,4 +14,5 @@ const customRender = (
 
 export * from "@testing-library/react";
 export * from "@react-aria/test-utils";
+export * from "@testing-library/user-event";
 export { customRender as render };
