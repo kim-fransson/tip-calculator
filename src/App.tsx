@@ -1,4 +1,4 @@
-import { I18nProvider } from "react-aria-components";
+import { Form, I18nProvider } from "react-aria-components";
 import { ResultsContainer } from "./components/ResultsContainer/ResultsContainer";
 import { twJoin } from "tailwind-merge";
 
@@ -6,24 +6,26 @@ import splitterLogoSrc from "./assets/logo.svg";
 import { SelectTipField } from "./components/SelectTipField";
 import { NumberField } from "./components/NumberField";
 import { Users } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 import { calculateTip, splitAmount } from "./utils/tip-calculator-utils";
 
 function App() {
-  const [bill, setBill] = useState<number | undefined | null>();
-  const [tip, setTip] = useState<number | undefined | null>();
-  const [numberOfPeople, setNumberOfPeople] = useState<
-    number | undefined | null
-  >();
+  const errors = [];
+  const [bill, setBill] = useState<number>();
+  const [tip, setTip] = useState<number>();
+  const [numberOfPeople, setNumberOfPeople] = useState<number>();
   const [tipAmountPerPerson, setTipAmountPerPerson] = useState(0);
   const [totalAmountPerPerson, setTotalAmountPerPerson] = useState(0);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  if (numberOfPeople === 0) {
+    errors.push("Can't be zero");
+  }
 
   const handleReset = () => {
-    setBill(null);
-    setTip(null);
-    setNumberOfPeople(null);
     setTipAmountPerPerson(0);
     setTotalAmountPerPerson(0);
+    formRef.current?.reset();
   };
 
   useEffect(() => {
@@ -46,12 +48,11 @@ function App() {
         <BillContainer>
           <MainContainer>
             <BillSection
-              bill={bill}
               onBillChange={setBill}
-              tip={tip}
               onTipChange={setTip}
-              numberOfPeople={numberOfPeople}
               onNumberOfPeopleChange={setNumberOfPeople}
+              formRef={formRef}
+              errors={errors}
             />
             <ResultsSection
               tipAmountPerPerson={tipAmountPerPerson}
@@ -104,48 +105,46 @@ const MainContainer = ({ children }: { children: React.ReactNode }) => {
 };
 
 interface BillSectionProps {
-  bill: number | undefined | null;
   onBillChange: (val: number) => void;
-  tip: number | undefined | null;
   onTipChange: (val: number) => void;
-  numberOfPeople: number | undefined | null;
   onNumberOfPeopleChange: (val: number) => void;
+  formRef?: RefObject<HTMLFormElement | null>;
+  errors: string[];
 }
 const BillSection = ({
-  bill,
   onBillChange,
-  tip,
   onTipChange,
-  numberOfPeople,
   onNumberOfPeopleChange,
+  formRef,
+  errors,
 }: BillSectionProps) => {
   return (
-    <section className="grid gap-8">
+    <section>
       <h2 className="sr-only">Let's Break Down the Feast</h2>
-      <NumberField
-        testid="bill"
-        label="Bill"
-        postfix="$"
-        minValue={0}
-        value={bill as number}
-        onChange={onBillChange}
-        placeholder="0"
-        formatOptions={{
-          maximumFractionDigits: 2,
-        }}
-      />
-      <SelectTipField tip={tip} onTipChange={onTipChange} />
-      <NumberField
-        testid="number-of-people"
-        label="Number of People"
-        postfix={<Users strokeWidth={3} />}
-        placeholder="0"
-        minValue={0}
-        value={numberOfPeople as number}
-        onChange={onNumberOfPeopleChange}
-        errorMessage="Can't be zero"
-        isInvalid={numberOfPeople === 0}
-      />
+      <Form ref={formRef} className="grid gap-8">
+        <NumberField
+          testid="bill"
+          label="Bill"
+          postfix="$"
+          minValue={0}
+          onChange={onBillChange}
+          placeholder="0"
+          formatOptions={{
+            maximumFractionDigits: 2,
+          }}
+        />
+        <SelectTipField onTipChange={onTipChange} />
+        <NumberField
+          testid="number-of-people"
+          label="Number of People"
+          postfix={<Users strokeWidth={3} />}
+          placeholder="0"
+          minValue={0}
+          onChange={onNumberOfPeopleChange}
+          isInvalid={errors.length > 0}
+          errorMessage={errors[0]}
+        />
+      </Form>
     </section>
   );
 };

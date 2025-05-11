@@ -12,12 +12,10 @@ import { useEffect, useState } from "react";
 const staticTipValues = [0.05, 0.1, 0.15, 0.25, 0.5];
 
 interface SelectTipFieldProps {
-  tip?: number | null;
   onTipChange?: (val: number) => void;
 }
 export const SelectTipField = ({
   onTipChange = () => {},
-  tip,
 }: SelectTipFieldProps) => {
   const [selectedTip, setSelectedTip] = useState(new Set<Key>([]));
   const [customTip, setCustomTip] = useState<number | null>(null);
@@ -31,13 +29,6 @@ export const SelectTipField = ({
     setSelectedTip(new Set<Key>([]));
     setCustomTip(customTip);
   };
-
-  useEffect(() => {
-    if (!tip) {
-      setSelectedTip(new Set<Key>([]));
-      setCustomTip(null);
-    }
-  }, [tip]);
 
   useEffect(() => {
     if (selectedTip.size > 0) {
